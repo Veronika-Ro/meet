@@ -10,7 +10,8 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: 32
+    numberOfEvents: 32,
+    currentCity: "all"
   }
 
   updateEvents = (location, eventCount) => {
@@ -19,7 +20,8 @@ class App extends Component {
         ? events.slice(0, eventCount)
         : events.filter((event) => event.location === location);
       this.setState({
-        events: locationEvents.slice(0, eventCount)
+        events: locationEvents.slice(0, eventCount),
+        currentCity: location
       });
     });
   }
