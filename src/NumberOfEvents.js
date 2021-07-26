@@ -12,7 +12,7 @@ class NumberOfEvents extends Component {
             numberOfEvents: value,
             ErrorText: '',
         });
-        this.props.updateEvents('', value);
+        this.props.updateNumberOfEvents('', value);
     };
 
     render() {
