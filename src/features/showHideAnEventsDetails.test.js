@@ -30,24 +30,27 @@ defineFeature(feature, test => {
         });
 
         when('the user clicks on Show Details', () => {
-            AppWrapper.find('.btn-ShowDetails').simulate("click");
+            AppWrapper.find('.btn-ShowDetails').at(1).simulate("click");
         });
 
         then('event element will expand', () => {
             AppWrapper.update();
             expect(AppWrapper.find(".event-details")).toHaveLength(1);
+            AppWrapper.unmount();
         });
     });
 
     test('User can collapse an event to hide its details', ({ given, when, then }) => {
         given('the user has expanded an event element', () => {
             AppWrapper = mount(<App />);
-            AppWrapper.find('.btn-ShowDetails').simulate("click");
+            AppWrapper.find('.btn-ShowDetails').at(1).simulate("click");
+            AppWrapper.update();
             expect(AppWrapper.find('.event-details')).toHaveLength(1);
         });
 
         when('the user clicks on Hide Details', () => {
-            AppWrapper.find('.btn-ShowDetails').at(1).simulate("click");
+            const button = AppWrapper.find('.btn-ShowDetails');
+            AppWrapper.find(button.text()).to.be.eql('Hide Details').at(1).simulate("click");
         });
 
         then('the event elent will collapse', () => {
