@@ -69,3 +69,4 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
     });
 });
+

@@ -32,9 +32,17 @@ class Event extends Component {
                     <p className="description">{event.description}</p>
                 </div>
             )}
-            <button className="btn-ShowDetails" onClick={this.toggleEvent}>
-                {!this.state.showHideDetails ? 'Show Details' : 'Hide Details'}
-            </button>
+
+            {this.state.showHideDetails === false && (
+                <button className="btn-ShowDetails" onClick={() => this.toggleEvent()}>
+                    Show details
+                </button>
+            )}
+            {this.state.showHideDetails === true && (
+                <button className="btn-HideDetails" onClick={() => this.toggleEvent()}>
+                    Hide details
+                </button>
+            )}
 
         </div>;
     }

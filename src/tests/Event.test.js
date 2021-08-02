@@ -30,13 +30,21 @@ describe('<Event /> component', () => {
     });
 
     test('render collapsed details after click show-details', () => {
+        EventWrapper.setState({
+            showHideDetails: false,
+        });
+
         EventWrapper.find('.btn-ShowDetails').simulate('click');
-        expect(EventWrapper.state('showHideDetails')).toBeTruthy();
+        expect(EventWrapper.find(".event-details")).toHaveLength(1);
     })
 
     test('render expanded details after click show details', () => {
-        EventWrapper.find('.btn-ShowDetails').simulate('click');
-        expect(EventWrapper.state('showHideDetails')).toBeFalsy();
+        EventWrapper.setState({
+            showHideDetails: true,
+        });
+
+        EventWrapper.find('.btn-HideDetails').simulate('click');
+        expect(EventWrapper.find(".event-details")).toHaveLength(0);
     })
 
 });

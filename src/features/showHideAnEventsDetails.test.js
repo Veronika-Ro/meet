@@ -35,7 +35,7 @@ defineFeature(feature, test => {
 
         then('event element will expand', () => {
             AppWrapper.update();
-            expect(AppWrapper.find(".event-details")).toHaveLength(1);
+            expect(AppWrapper.find('.event-details')).toHaveLength(1);
             AppWrapper.unmount();
         });
     });
@@ -49,12 +49,11 @@ defineFeature(feature, test => {
         });
 
         when('the user clicks on Hide Details', () => {
-            const button = AppWrapper.find('.btn-ShowDetails');
-            AppWrapper.find(button.text()).to.be.eql('Hide Details').at(1).simulate("click");
+            AppWrapper.find('.btn-HideDetails').at(1).simulate("click");
         });
 
         then('the event elent will collapse', () => {
-            expect(AppWrapper.find(".event-details")).toHaveLength(0);
+            expect(AppWrapper.find('.event-details')).toHaveLength(0);
         });
     });
 });
