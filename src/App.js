@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './nprogress.css'
 import './App.css';
+import { NotificationAlert } from './Alert';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
@@ -11,7 +12,8 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: 32,
-    currentCity: "all"
+    currentCity: "all",
+    notificationText: ''
   }
 
   updateEvents = (location, eventCount) => {
@@ -36,6 +38,16 @@ class App extends Component {
   componentDidMount() {
     const { numberOfEvents } = this.state;
     this.mounted = true;
+
+    if (navigator.onLine === false) {
+      this.setState({
+        notificationText: 'It seems you are offline. To update your list of events please connect to the internet.'
+      });
+    } else {
+      this.setState({
+        notificationText: ''
+      });
+    }
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
@@ -62,6 +74,9 @@ class App extends Component {
           updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
           numberOfEvents={this.state.numberOfEvents}
         />
+
+        <NotificationAlert text={this.state.notificationText} />
+
         <EventList events={this.state.events} />
       </div>
     );
