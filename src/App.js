@@ -92,6 +92,8 @@ class App extends Component {
 
     return (
       <div className="App">
+        <h1>Meet app</h1>
+        <h4>Find upcoming events around the world for full-stack developers</h4>
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}
